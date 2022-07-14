@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System;
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares
+namespace OSPeConTI.Auth.Services.Application.Middlewares
 {
     public interface IResultError
     {

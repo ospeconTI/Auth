@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions
+namespace OSPeConTI.Auth.Services.Application.Exceptions
 {
     public interface IForbiddenException
     {

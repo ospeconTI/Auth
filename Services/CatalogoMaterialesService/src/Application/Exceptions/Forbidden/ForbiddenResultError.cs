@@ -1,8 +1,8 @@
 using System;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Attributes;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares;
+using OSPeConTI.Auth.Services.Application.Attributes;
+using OSPeConTI.Auth.Services.Application.Middlewares;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions
+namespace OSPeConTI.Auth.Services.Application.Exceptions
 {
     public class ForbiddenResultError : IResultError
     {

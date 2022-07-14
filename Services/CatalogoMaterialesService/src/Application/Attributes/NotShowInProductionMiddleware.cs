@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Attributes
+namespace OSPeConTI.Auth.Services.Application.Attributes
 {
     public class NotShowInProductionAttribute : System.Attribute
 

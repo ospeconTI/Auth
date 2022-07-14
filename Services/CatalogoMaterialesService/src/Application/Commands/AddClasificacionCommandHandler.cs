@@ -1,11 +1,11 @@
 using MediatR;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands
+namespace OSPeConTI.Auth.Services.Application.Commands
 {
     // Regular CommandHandler
     public class AddClasificacionCommandHandler : IRequestHandler<AddClasificacionCommand, Guid>

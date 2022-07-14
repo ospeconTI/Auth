@@ -1,15 +1,15 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries;
+using OSPeConTI.Auth.Services.Application.Commands;
+using OSPeConTI.Auth.Services.Application.Queries;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application
+namespace OSPeConTI.Auth.Services.Application
 {
     [Route("api/v1/[controller]")]
     [ApiController]

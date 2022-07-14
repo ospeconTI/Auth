@@ -1,6 +1,6 @@
 using System;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions
+namespace OSPeConTI.Auth.Services.Application.Exceptions
 {
     public class NotFoundException : Exception, INotFoundException
     {

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.Entities;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure.EntityConfigurations
+namespace OSPeConTI.Auth.Services.Infrastructure.EntityConfigurations
 {
     class TipoMaterialEntityTypeConfiguration : IEntityTypeConfiguration<TipoMaterial>
     {

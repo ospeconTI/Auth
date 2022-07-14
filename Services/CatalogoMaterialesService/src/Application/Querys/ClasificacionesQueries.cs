@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
+namespace OSPeConTI.Auth.Services.Application.Queries
 {
     using Dapper;
     using System;

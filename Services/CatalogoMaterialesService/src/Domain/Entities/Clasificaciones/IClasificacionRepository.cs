@@ -1,10 +1,10 @@
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.SeedWork;
+using OSPeConTI.Auth.Services.Domain.Entities;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
+namespace OSPeConTI.Auth.Services.Domain.Entities
 {
     public interface IClasificacionRepository : IRepository<Clasificacion>
     {

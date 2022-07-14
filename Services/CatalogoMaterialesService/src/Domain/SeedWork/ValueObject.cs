@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork
+namespace OSPeConTI.Auth.Services.Domain.SeedWork
 {
     public abstract class ValueObject
     {

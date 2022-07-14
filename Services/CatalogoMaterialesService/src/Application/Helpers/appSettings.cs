@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Helper
+namespace OSPeConTI.Auth.Services.Application.Helper
 {
     public class AppSettings
     {

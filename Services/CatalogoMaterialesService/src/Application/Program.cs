@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application
+namespace OSPeConTI.Auth.Services.Application
 {
     public class Program
     {

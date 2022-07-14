@@ -1,10 +1,10 @@
 using MediatR;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.Entities;
 using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands
+namespace OSPeConTI.Auth.Services.Application.Commands
 {
     [DataContract]
     public class AddTipoMaterialCommand : IRequest<bool>

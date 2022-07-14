@@ -11,21 +11,21 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.OData.Edm;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Helper;
-using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure;
+using OSPeConTI.Auth.Services.Application.Helper;
+using OSPeConTI.Auth.Services.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using System.Reflection;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
-using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure.Repositories;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries;
+using OSPeConTI.Auth.Services.Domain.Entities;
+using OSPeConTI.Auth.Services.Infrastructure.Repositories;
+using OSPeConTI.Auth.Services.Application.Queries;
 using System;
 using Microsoft.OpenApi.Models;
 using OData.Swagger.Services;
 using System.Collections.Generic;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Exceptions;
+using OSPeConTI.Auth.Services.Application.Middlewares;
+using OSPeConTI.Auth.Services.Application.Exceptions;
+using OSPeConTI.Auth.Services.Domain.Exceptions;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBusRabbitMQ;
 using Autofac;
@@ -33,12 +33,12 @@ using Microsoft.Extensions.Logging;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus;
 using RabbitMQ.Client;
 using Autofac.Extensions.DependencyInjection;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents;
+using OSPeConTI.Auth.Services.Application.IntegrationEvents;
 using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF;
 using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.Services;
 using System.Data.Common;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application
+namespace OSPeConTI.Auth.Services.Application
 {
     public class Startup
     {

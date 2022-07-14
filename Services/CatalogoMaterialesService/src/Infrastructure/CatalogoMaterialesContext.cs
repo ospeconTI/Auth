@@ -7,13 +7,13 @@ using System;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork;
-using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure.EntityConfigurations;
+using OSPeConTI.Auth.Services.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.SeedWork;
+using OSPeConTI.Auth.Services.Infrastructure.EntityConfigurations;
 using OSPeConTI.BackEndBase.Services.CursosService.Domain.SeedWork;
 using System.Linq;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure
+namespace OSPeConTI.Auth.Services.Infrastructure
 {
     public class CatalogoMaterialesContext : DbContext, IUnitOfWork
     {

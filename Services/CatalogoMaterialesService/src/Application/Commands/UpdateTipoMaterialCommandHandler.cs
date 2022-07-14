@@ -1,12 +1,12 @@
 using MediatR;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions;
+using OSPeConTI.Auth.Services.Application.Exceptions;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands
+namespace OSPeConTI.Auth.Services.Application.Commands
 {
     // Regular CommandHandler
     public class UpdateTipoMaterialCommandHandler : IRequestHandler<UpdateTipoMaterialCommand, bool>

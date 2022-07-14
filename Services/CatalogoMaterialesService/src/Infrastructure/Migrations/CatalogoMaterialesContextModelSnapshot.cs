@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure;
+using OSPeConTI.Auth.Services.Infrastructure;
 
 #nullable disable
 
@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Clasificacion", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.Clasificacion", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Clasificaciones", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Material", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.Material", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Materiales", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.TipoMaterial", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,13 +135,13 @@ namespace Infrastructure.Migrations
                     b.ToTable("TipoMateriales", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Material", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.Material", b =>
                 {
-                    b.HasOne("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Clasificacion", "Clasificacion")
+                    b.HasOne("OSPeConTI.Auth.Services.Domain.Entities.Clasificacion", "Clasificacion")
                         .WithMany("Materiales")
                         .HasForeignKey("ClasificacionId");
 
-                    b.HasOne("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", "TipoMaterial")
+                    b.HasOne("OSPeConTI.Auth.Services.Domain.Entities.TipoMaterial", "TipoMaterial")
                         .WithMany("Materiales")
                         .HasForeignKey("TipoMaterialId");
 
@@ -150,12 +150,12 @@ namespace Infrastructure.Migrations
                     b.Navigation("TipoMaterial");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Clasificacion", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.Clasificacion", b =>
                 {
                     b.Navigation("Materiales");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.Services.Domain.Entities.TipoMaterial", b =>
                 {
                     b.Navigation("Materiales");
                 });

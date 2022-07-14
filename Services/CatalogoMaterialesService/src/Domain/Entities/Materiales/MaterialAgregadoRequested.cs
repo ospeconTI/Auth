@@ -1,5 +1,5 @@
 using MediatR;
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
+namespace OSPeConTI.Auth.Services.Domain.Entities
 {
 
     public class MaterialAgregadoRequested : INotification

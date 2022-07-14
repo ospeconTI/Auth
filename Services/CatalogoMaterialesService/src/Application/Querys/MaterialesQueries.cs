@@ -1,5 +1,5 @@
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
+namespace OSPeConTI.Auth.Services.Application.Queries
 {
     using Dapper;
     using System;
@@ -7,8 +7,8 @@ namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     using System.Linq;
-    using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
-    using OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions;
+    using OSPeConTI.Auth.Services.Domain.Entities;
+    using OSPeConTI.Auth.Services.Application.Exceptions;
     using Newtonsoft.Json.Linq;
 
     public class MaterialesQueries

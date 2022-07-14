@@ -1,20 +1,20 @@
 using MediatR;
-using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.Auth.Services.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions;
+using OSPeConTI.Auth.Services.Application.Exceptions;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
-using OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents;
+using OSPeConTI.Auth.Services.Application.IntegrationEvents;
 using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.Services;
 using System.Data.Common;
-using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure;
+using OSPeConTI.Auth.Services.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands
+namespace OSPeConTI.Auth.Services.Application.Commands
 {
     // Regular CommandHandler
     public class UpdateMaterialesCommandHandler : IRequestHandler<UpdateMaterialesCommand, bool>

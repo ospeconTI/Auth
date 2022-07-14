@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork
+namespace OSPeConTI.Auth.Services.Domain.SeedWork
 {
     public interface IUnitOfWork : IDisposable
     {
