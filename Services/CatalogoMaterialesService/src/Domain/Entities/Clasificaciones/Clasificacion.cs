@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.SeedWork;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Exceptions;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Exceptions;
 
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
 {
     public class Clasificacion : Entity, IAggregateRoot
     {

@@ -1,14 +1,14 @@
 using MediatR;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.IntegrationEvents;
+using OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Commands
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Commands
 {
     // Regular CommandHandler
     public class AddMaterialesCommandHandler : IRequestHandler<AddMaterialesCommand, Guid>

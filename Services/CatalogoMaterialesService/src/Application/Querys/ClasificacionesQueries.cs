@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Queries
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
 {
     using Dapper;
     using System;

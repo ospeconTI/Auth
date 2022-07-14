@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Attributes;
+using OSPeConTI.BackEndBase.Services.Usuarios.Application.Attributes;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Middlewares
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares
 
 {
     public class ExceptionMiddleware

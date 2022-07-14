@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Queries
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
 {
     public class ClasificacionDTO
     {

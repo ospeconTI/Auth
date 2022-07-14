@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System;
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Middlewares
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares
 {
     public interface IResultError
     {

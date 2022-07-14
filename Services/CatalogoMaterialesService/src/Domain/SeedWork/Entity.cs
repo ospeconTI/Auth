@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.SeedWork
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork
 {
     using MediatR;
     using OSPeConTI.BackEndBase.Services.CursosService.Domain.SeedWork;

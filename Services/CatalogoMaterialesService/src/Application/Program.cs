@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application
 {
     public class Program
     {

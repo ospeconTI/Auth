@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Infrastructure;
+using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure;
 
 namespace Infrastructure.Migrations
 {
@@ -21,7 +21,7 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.Clasificacion", b =>
+            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Clasificacion", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Clasificaciones", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.Material", b =>
+            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Material", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Materiales", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.TipoMaterial", b =>
+            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,18 +136,18 @@ namespace Infrastructure.Migrations
                     b.ToTable("TipoMateriales", "dbo");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.Material", b =>
+            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Material", b =>
                 {
-                    b.HasOne("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.Clasificacion", "Clasificacion")
+                    b.HasOne("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.Clasificacion", "Clasificacion")
                         .WithMany()
                         .HasForeignKey("ClasificacionId");
 
                     b.Navigation("Clasificacion");
                 });
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.TipoMaterial", b =>
+            modelBuilder.Entity("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", b =>
                 {
-                    b.HasOne("OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities.TipoMaterial", "TipoMateriales")
+                    b.HasOne("OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities.TipoMaterial", "TipoMateriales")
                         .WithMany()
                         .HasForeignKey("TipoMaterialesId");
 

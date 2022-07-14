@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.IntegrationEvents
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents
 {
 
     public interface IMaterialIntegrationEventService

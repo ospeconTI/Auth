@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
 {
 
     public class MaterialAgregadoHandler : INotificationHandler<MaterialAgregadoRequested>

@@ -1,5 +1,5 @@
 using MediatR;
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
 {
 
     public class ClasificacionAgregadoRequested : INotification

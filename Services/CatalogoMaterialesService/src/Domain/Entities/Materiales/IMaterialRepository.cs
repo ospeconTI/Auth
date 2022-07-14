@@ -1,9 +1,9 @@
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.SeedWork;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities
 {
     public interface IMaterialesRepository : IRepository<Material>
     {

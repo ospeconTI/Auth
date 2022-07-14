@@ -8,9 +8,9 @@ using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
 using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF;
 using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.Services;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Infrastructure;
+using OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.IntegrationEvents
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents
 {
     public class MaterialIntegrationEventService : IMaterialIntegrationEventService
     {

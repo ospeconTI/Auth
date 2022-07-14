@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.SeedWork;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Infrastructure.Repositories
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure.Repositories
 {
     public class MaterialesRepository
         : IMaterialesRepository

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Infrastructure.EntityConfigurations
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Infrastructure.EntityConfigurations
 {
     class ClasificacionEntityTypeConfiguration : IEntityTypeConfiguration<Clasificacion>
     {

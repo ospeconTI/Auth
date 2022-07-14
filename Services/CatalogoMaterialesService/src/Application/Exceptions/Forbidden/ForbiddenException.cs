@@ -1,6 +1,6 @@
 using System;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Exceptions
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions
 {
     public class ForbiddenException : Exception, IForbiddenException
     {

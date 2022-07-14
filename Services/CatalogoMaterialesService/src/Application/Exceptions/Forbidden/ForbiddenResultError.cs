@@ -1,8 +1,8 @@
 using System;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Attributes;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Middlewares;
+using OSPeConTI.BackEndBase.Services.Usuarios.Application.Attributes;
+using OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Exceptions
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions
 {
     public class ForbiddenResultError : IResultError
     {

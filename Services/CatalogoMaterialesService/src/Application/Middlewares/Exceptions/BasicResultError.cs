@@ -1,7 +1,7 @@
 using System;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Attributes;
+using OSPeConTI.BackEndBase.Services.Usuarios.Application.Attributes;
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Middlewares
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Middlewares
 {
     public class BasicResultError : IResultError
     {

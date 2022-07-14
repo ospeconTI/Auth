@@ -1,5 +1,5 @@
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Queries
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.Queries
 {
     using Dapper;
     using System;
@@ -7,8 +7,8 @@ namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Queries
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     using System.Linq;
-    using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
-    using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.Exceptions;
+    using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
+    using OSPeConTI.BackEndBase.Services.Usuarios.Application.Exceptions;
 
     public class TipoMaterialesQueries
         : ITipoMaterialesQueries

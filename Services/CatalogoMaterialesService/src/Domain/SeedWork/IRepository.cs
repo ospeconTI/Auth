@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.SeedWork
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Domain.SeedWork
 {
     public interface IRepository<T> where T : IAggregateRoot
     {

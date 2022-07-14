@@ -2,10 +2,10 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
-using OSPeConTI.BackEndBase.Services.CatalogoMateriales.Domain.Entities;
+using OSPeConTI.BackEndBase.Services.Usuarios.Domain.Entities;
 
 
-namespace OSPeConTI.BackEndBase.Services.CatalogoMateriales.Application.IntegrationEvents
+namespace OSPeConTI.BackEndBase.Services.Usuarios.Application.IntegrationEvents
 {
     public class MaterialModificadoIntegrationEventHandler : IIntegrationEventHandler<MaterialModificadoIntegrationEvent>
     {
