@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF;
+using OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF;
 
 #nullable disable
 
@@ -24,7 +24,7 @@ namespace Infrastructure.Migrations.IntegrationEventLog
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.IntegrationEventLogEntry", b =>
+            modelBuilder.Entity("OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF.IntegrationEventLogEntry", b =>
                 {
                     b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()

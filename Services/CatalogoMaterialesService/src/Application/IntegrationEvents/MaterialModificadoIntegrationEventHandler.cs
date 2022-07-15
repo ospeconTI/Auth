@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
+using OSPeConTI.Auth.BuildingBlocks.EventBus.Abstractions;
 using OSPeConTI.Auth.Services.Domain.Entities;
 
 

@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBusRabbitMQ;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.EventBusRabbitMQ;
 
 public class EventBusRabbitMQ : IEventBus, IDisposable
 {

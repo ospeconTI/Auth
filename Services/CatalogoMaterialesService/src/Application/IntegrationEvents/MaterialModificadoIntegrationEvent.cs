@@ -1,6 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
-using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
+using OSPeConTI.Auth.BuildingBlocks.EventBus.Events;
 
 namespace OSPeConTI.Auth.Services.Application.IntegrationEvents
 {

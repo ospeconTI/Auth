@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Extensions;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.EventBus.Extensions;
 
 public static class GenericTypeExtensions
 {

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF</RootNamespace>
+    <RootNamespace>OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

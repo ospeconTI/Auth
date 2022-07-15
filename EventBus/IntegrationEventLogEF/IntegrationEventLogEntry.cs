@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF;
 
 public class IntegrationEventLogEntry
 {

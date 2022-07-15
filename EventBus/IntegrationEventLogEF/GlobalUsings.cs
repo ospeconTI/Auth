@@ -1,6 +1,6 @@
 ﻿global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
-global using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
+global using OSPeConTI.Auth.BuildingBlocks.EventBus.Events;
 global using System;
 global using System.Text.Json;
 global using System.ComponentModel.DataAnnotations.Schema;

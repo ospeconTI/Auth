@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>OSPeConTI.BackEndBase.BuildingBlocks.EventBusRabbitMQ</RootNamespace>
+    <RootNamespace>OSPeConTI.Auth.BuildingBlocks.EventBusRabbitMQ</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

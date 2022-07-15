@@ -1,4 +1,4 @@
-﻿using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
+﻿using OSPeConTI.Auth.BuildingBlocks.EventBus.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;

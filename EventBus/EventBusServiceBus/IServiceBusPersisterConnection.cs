@@ -1,4 +1,4 @@
-namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBusServiceBus;
+namespace OSPeConTI.Auth.BuildingBlocks.EventBusServiceBus;
 
 public interface IServiceBusPersisterConnection : IDisposable
 {

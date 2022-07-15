@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.EventBus.Events;
 
 public record IntegrationEvent
 {

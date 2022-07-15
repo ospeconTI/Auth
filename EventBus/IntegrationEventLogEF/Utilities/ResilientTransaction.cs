@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.Utilities;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF.Utilities;
 
 public class ResilientTransaction
 {

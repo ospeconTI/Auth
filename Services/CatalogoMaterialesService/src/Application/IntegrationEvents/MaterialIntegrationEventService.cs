@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
-using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
-using OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Events;
-using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF;
-using OSPeConTI.BackEndBase.BuildingBlocks.IntegrationEventLogEF.Services;
+using OSPeConTI.Auth.BuildingBlocks.EventBus.Abstractions;
+using OSPeConTI.Auth.BuildingBlocks.EventBus.Events;
+using OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF;
+using OSPeConTI.Auth.BuildingBlocks.IntegrationEventLogEF.Services;
 using OSPeConTI.Auth.Services.Infrastructure;
 
 namespace OSPeConTI.Auth.Services.Application.IntegrationEvents

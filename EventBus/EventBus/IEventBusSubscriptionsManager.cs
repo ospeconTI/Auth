@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBus;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.EventBus;
 
 public interface IEventBusSubscriptionsManager
 {

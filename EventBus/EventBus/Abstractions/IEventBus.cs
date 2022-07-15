@@ -1,4 +1,4 @@
-﻿namespace OSPeConTI.BackEndBase.BuildingBlocks.EventBus.Abstractions;
+﻿namespace OSPeConTI.Auth.BuildingBlocks.EventBus.Abstractions;
 
 public interface IEventBus
 {
