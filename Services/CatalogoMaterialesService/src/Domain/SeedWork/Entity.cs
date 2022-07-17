@@ -1,7 +1,6 @@
 namespace OSPeConTI.Auth.Services.Domain.SeedWork
 {
     using MediatR;
-    using OSPeConTI.BackEndBase.Services.CursosService.Domain.SeedWork;
     using System;
     using System.Collections.Generic;
 

@@ -8,10 +8,10 @@ using System.Collections;
 
 namespace OSPeConTI.Auth.Services.Infrastructure.Repositories
 {
-    public class TipoMaterialRepository
-        : ITipoMaterialRepository
+    public class UsuarioProfileRepository
+        : IUsuarioProfileRepository
     {
-        private readonly CatalogoMaterialesContext _context;
+        private readonly AuthContext _context;
 
         public IUnitOfWork UnitOfWork
         {
@@ -21,29 +21,30 @@ namespace OSPeConTI.Auth.Services.Infrastructure.Repositories
             }
         }
 
-        public TipoMaterialRepository(CatalogoMaterialesContext context)
+        public UsuarioProfileRepository(AuthContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public TipoMaterial Add(TipoMaterial tipoMaterial)
+        public Guid add(UsuarioProfile usuarioProfile)
         {
-            return _context.TipoMateriales.Add(tipoMaterial).Entity;
+            _context.UsuarioProfiles.Add(usuarioProfile);
+            return usuarioProfile.Id;
         }
-        public TipoMaterial Update(TipoMaterial tipoMaterial)
+        public void update(UsuarioProfile usuarioProfile)
         {
-            return _context.TipoMateriales.Update(tipoMaterial).Entity;
+            _context.UsuarioProfiles.Update(usuarioProfile);
         }
 
-        public async Task<TipoMaterial> GetByIdAsync(Guid id)
+        public async Task<UsuarioProfile> getByIdAsync(Guid id)
         {
             var item = await _context
-                                .TipoMateriales
+                                .UsuarioProfiles
                                 .FirstOrDefaultAsync(o => o.Id == id);
             if (item == null)
             {
                 item = _context
-                            .TipoMateriales
+                            .UsuarioProfiles
                             .Local
                             .FirstOrDefault(o => o.Id == id);
             }
@@ -51,17 +52,17 @@ namespace OSPeConTI.Auth.Services.Infrastructure.Repositories
             return item;
         }
 
-        public async Task<TipoMaterial> GetTipoMaterialesByNameAsync(string descripcion)
+        public async Task<UsuarioProfile> getByNombreUsuarioAsync(string nombreUsuario)
         {
             var tipo = await _context
-                    .TipoMateriales
-                    .FirstOrDefaultAsync(o => o.Descripcion == descripcion);
+                    .UsuarioProfiles
+                    .FirstOrDefaultAsync(o => o.NombreUsuario == nombreUsuario);
             if (tipo == null)
             {
                 tipo = _context
-                            .TipoMateriales
+                            .UsuarioProfiles
                             .Local
-                            .FirstOrDefault(o => o.Descripcion == descripcion);
+                            .FirstOrDefault(o => o.NombreUsuario == nombreUsuario);
             }
 
             return tipo;

@@ -10,40 +10,38 @@ using System.Threading.Tasks;
 using OSPeConTI.Auth.Services.Domain.Entities;
 using OSPeConTI.Auth.Services.Domain.SeedWork;
 using OSPeConTI.Auth.Services.Infrastructure.EntityConfigurations;
-using OSPeConTI.BackEndBase.Services.CursosService.Domain.SeedWork;
 using System.Linq;
 
 namespace OSPeConTI.Auth.Services.Infrastructure
 {
-    public class CatalogoMaterialesContext : DbContext, IUnitOfWork
+    public class AuthContext : DbContext, IUnitOfWork
     {
         public const string DEFAULT_SCHEMA = "dbo";
-        public DbSet<Clasificacion> Clasificaciones { get; set; }
-        public DbSet<Material> Materiales { get; set; }
-        public DbSet<TipoMaterial> TipoMateriales { get; set; }
+        public DbSet<UsuarioProfile> UsuarioProfiles { get; set; }
+        public DbSet<AuthData> AuthDatas { get; set; }
 
         private readonly IMediator _mediator;
         private IDbContextTransaction _currentTransaction;
 
-        public CatalogoMaterialesContext(DbContextOptions<CatalogoMaterialesContext> options) : base(options) { }
+        public AuthContext(DbContextOptions<AuthContext> options) : base(options) { }
 
         public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
 
         public bool HasActiveTransaction => _currentTransaction != null;
 
-        public CatalogoMaterialesContext(DbContextOptions<CatalogoMaterialesContext> options, IMediator mediator) : base(options)
+        public AuthContext(DbContextOptions<AuthContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
 
-            System.Diagnostics.Debug.WriteLine("CatalogoMaterialesContext::ctor ->" + this.GetHashCode());
+            System.Diagnostics.Debug.WriteLine("AuthContext::ctor ->" + this.GetHashCode());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ClasificacionEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new MaterialesEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new TipoMaterialEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuarioProfilelEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new AuthDataEntityTypeConfiguration());
+
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
@@ -153,10 +151,10 @@ namespace OSPeConTI.Auth.Services.Infrastructure
         }
     }
 
-    public class MaterialesContextDesignFactory : IDesignTimeDbContextFactory<CatalogoMaterialesContext>
+    public class AuthContextDesignFactory : IDesignTimeDbContextFactory<AuthContext>
     {
 
-        public CatalogoMaterialesContext CreateDbContext(string[] args)
+        public AuthContext CreateDbContext(string[] args)
         {
             string env = args.Length == 0 ? "" : args[0];
 
@@ -167,16 +165,16 @@ namespace OSPeConTI.Auth.Services.Infrastructure
 
             if (env == "Prod")
             {
-                var optionsBuilder = new DbContextOptionsBuilder<CatalogoMaterialesContext>()
-                .UseSqlServer("Server=10.1.10.29;Initial Catalog=Materiales;User ID=sa;password=informacion");
-                return new CatalogoMaterialesContext(optionsBuilder.Options, new NoMediator());
+                var optionsBuilder = new DbContextOptionsBuilder<AuthContext>()
+                .UseSqlServer("Server=10.1.10.29;Initial Catalog=Auth;User ID=sa;password=informacion");
+                return new AuthContext(optionsBuilder.Options, new NoMediator());
             }
             if (env == "Dev")
             {
 
-                var optionsBuilder = new DbContextOptionsBuilder<CatalogoMaterialesContext>()
-                .UseSqlServer("Server=sqldev01;Initial Catalog=CatalogoMateriales;integrated security=true");
-                return new CatalogoMaterialesContext(optionsBuilder.Options, new NoMediator());
+                var optionsBuilder = new DbContextOptionsBuilder<AuthContext>()
+                .UseSqlServer("Server=sqldev01;Initial Catalog=Auth;integrated security=true");
+                return new AuthContext(optionsBuilder.Options, new NoMediator());
             }
 
             return null;

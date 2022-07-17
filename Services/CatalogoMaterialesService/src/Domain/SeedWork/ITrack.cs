@@ -1,6 +1,6 @@
 using System;
 
-namespace OSPeConTI.BackEndBase.Services.CursosService.Domain.SeedWork
+namespace OSPeConTI.Auth.Services.Domain.SeedWork
 {
     public interface ITrack
     {

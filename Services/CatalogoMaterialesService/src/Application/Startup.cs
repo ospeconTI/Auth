@@ -36,6 +36,7 @@ using OSPeConTI.Auth.Services.Domain.Exceptions;
 using OSPeConTI.Auth.Services.Infrastructure;
 using OSPeConTI.Auth.Services.Infrastructure.Repositories;
 using RabbitMQ.Client;
+using OSPeConTI.Auth.Services.Domain;
 
 namespace OSPeConTI.Auth.Services.Application
 {
@@ -49,26 +50,17 @@ namespace OSPeConTI.Auth.Services.Application
 
             _env = env;
 
-            var builder =
-                new ConfigurationBuilder()
-                    .SetBasePath(env.ContentRootPath)
-                    .AddEnvironmentVariables();
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddEnvironmentVariables();
 
             if (_env.IsProduction())
             {
                 Console.WriteLine("--> Corriendo en Produccion");
-                builder
-                    .AddJsonFile("appSettings.production.json",
-                    optional: false,
-                    reloadOnChange: true);
+                builder.AddJsonFile("appSettings.production.json", optional: false, reloadOnChange: true);
             }
             else
             {
                 Console.WriteLine("--> Corriendo en Desarrollo");
-                builder
-                    .AddJsonFile("appSettings.development.json",
-                    optional: false,
-                    reloadOnChange: true);
+                builder.AddJsonFile("appSettings.development.json", optional: false, reloadOnChange: true);
             }
             this.Configuration = builder.Build();
         }
@@ -81,103 +73,79 @@ namespace OSPeConTI.Auth.Services.Application
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddAuthorization();
             services.AddControllers();
-            services
-                .AddSwaggerGen(c =>
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    c
-                        .SwaggerDoc("v1",
-                        new OpenApiInfo {
-                            Title = "Materiales",
-                            Version = "v1"
-                        });
+                    Title = "Materiales",
+                    Version = "v1"
                 });
+            });
 
-            services.AddAutoMapper(typeof (Startup));
+            services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddHttpClient();
             services.AddOdataSwaggerSupport();
 
             //Queries
-            services.AddQueries (Configuration);
+            services.AddQueries(Configuration);
 
             // Base de Datos
-            services.AddDatabaseContext (Configuration);
+            services.AddDatabaseContext(Configuration);
 
             //Eventos de Dominio
-            services.AddDomainEvents (Configuration);
+            services.AddDomainEvents(Configuration);
 
             //Base de datos de Log
-            services.AddIntegartionEventLog (Configuration);
+            services.AddIntegartionEventLog(Configuration);
 
             // Authenticacion
-            services.AddAuthentication (Configuration);
+            services.AddAuthentication(Configuration);
 
             // Eventos de Integracion
-            services.AddEventBus (Configuration);
+            services.AddEventBus(Configuration);
+
+            services.AddEncryptMethods(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //configurar custom errors
-            ConfigureErrors (app);
+            ConfigureErrors(app);
 
             app.UseRouting();
 
-            app
-                .UseCors(x =>
-                    x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app
-                .UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
-                app
-                    .UseSwaggerUI(c =>
-                        c
-                            .SwaggerEndpoint("/swagger/v1/swagger.json",
-                            "RegistroVisitas v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistroVisitas v1"));
             }
 
             // Suscribirse a eventos de integacion
-            ConfigureEventBus (app);
+            ConfigureEventBus(app);
         }
 
         private void ConfigureEventBus(IApplicationBuilder app)
         {
-            var eventBus =
-                app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus
-                .Subscribe
-                <MaterialModificadoIntegrationEvent,
-                    MaterialModificadoIntegrationEventHandler
-                >();
-            //eventBus.Subscribe<MaterialCreadoIntegrationEvent, MaterialCreadoIntegrationEventHandler>();
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<MaterialModificadoIntegrationEvent, MaterialModificadoIntegrationEventHandler>();
         }
-
         private void ConfigureErrors(IApplicationBuilder app)
         {
-            Dictionary<Type, IResultError> exceptions =
-                new Dictionary<Type, IResultError>();
-            exceptions
-                .Add(typeof (IInvalidException), new InvalidResultError());
-            exceptions
-                .Add(typeof (IForbiddenException), new ForbiddenResultError());
-            exceptions
-                .Add(typeof (InvalidOperationException),
-                new InvalidResultError());
-            exceptions
-                .Add(typeof (INotFoundException), new NotFoundResultError());
+            Dictionary<Type, IResultError> exceptions = new Dictionary<Type, IResultError>();
+            exceptions.Add(typeof(IInvalidException), new InvalidResultError());
+            exceptions.Add(typeof(IForbiddenException), new ForbiddenResultError());
+            exceptions.Add(typeof(InvalidOperationException), new InvalidResultError());
+            exceptions.Add(typeof(INotFoundException), new NotFoundResultError());
 
-            app.UseMiddleware<ExceptionMiddleware> (exceptions);
+            app.UseMiddleware<ExceptionMiddleware>(exceptions);
         }
-
         private IEdmModel GetEdmModel()
         {
             var odataBuilder = new ODataConventionModelBuilder();
@@ -187,119 +155,71 @@ namespace OSPeConTI.Auth.Services.Application
 
     static class CustomExtensionsMethods
     {
-        public static IServiceCollection
-        AddQueries(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+
+
+        public static IServiceCollection AddEncryptMethods(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddScoped<IClasificacionesQueries>(conns =>
-                    new ClasificacionesQueries(configuration
-                            .GetConnectionString("DefaultConnection")));
-            services
-                .AddScoped<IMaterialesQueries>(conns =>
-                    new MaterialesQueries(configuration
-                            .GetConnectionString("DefaultConnection")));
-            services
-                .AddScoped<ITipoMaterialesQueries>(conns =>
-                    new TipoMaterialesQueries(configuration
-                            .GetConnectionString("DefaultConnection")));
+            services.AddScoped(typeof(IEncrypt), typeof(Pbkdf2));
+            services.AddScoped(typeof(IEncrypt), typeof(NoEncrypt));
+
+            return services;
+        }
+        public static IServiceCollection AddQueries(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddScoped<IClasificacionesQueries>(conns => new ClasificacionesQueries(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IMaterialesQueries>(conns => new MaterialesQueries(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ITipoMaterialesQueries>(conns => new TipoMaterialesQueries(configuration.GetConnectionString("DefaultConnection")));
             return services;
         }
 
-        public static IServiceCollection
-        AddDatabaseContext(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddDbContext<CatalogoMaterialesContext>(opt =>
-                    opt
-                        .UseSqlServer(configuration
-                            .GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly("Application")));
+            services.AddDbContext<AuthContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Application")));
+            services.AddScoped(typeof(IUsuarioProfileRepository), typeof(UsuarioProfileRepository));
+            services.AddScoped(typeof(IAuthDataRepository), typeof(AuthDataRepository));
 
-            services
-                .AddScoped(typeof (IClasificacionRepository),
-                typeof (ClasificacionRepository));
-            services
-                .AddScoped(typeof (IMaterialesRepository),
-                typeof (MaterialesRepository));
-            services
-                .AddScoped(typeof (ITipoMaterialRepository),
-                typeof (TipoMaterialRepository));
             return services;
         }
 
-        public static IServiceCollection
-        AddDomainEvents(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddDomainEvents(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddTransient(typeof (
-                    INotificationHandler<MaterialAgregadoRequested>
-                ),
-                typeof (MaterialAgregadoHandler));
-            services
-                .AddTransient(typeof (
-                    INotificationHandler<ClasificacionAgregadoRequested>
-                ),
-                typeof (ClasificacionAgregadoHandler));
+            services.AddTransient(typeof(INotificationHandler<UsuarioProfileRequested>), typeof(UsuarioProfileAgregadoHandler));
+
             return services;
         }
 
-        public static IServiceCollection
-        AddIntegartionEventLog(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddIntegartionEventLog(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddDbContext<IntegrationEventLogContext>(options =>
+            services.AddDbContext<IntegrationEventLogContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: sqlOptions =>
                 {
-                    options
-                        .UseSqlServer(configuration
-                            .GetConnectionString("DefaultConnection"),
-                        sqlServerOptionsAction: sqlOptions =>
-                        {
-                            sqlOptions.MigrationsAssembly("Infrastructure");
-                            sqlOptions
-                                .EnableRetryOnFailure(maxRetryCount: 15,
-                                maxRetryDelay: TimeSpan.FromSeconds(30),
-                                errorNumbersToAdd: null);
-                        });
+                    sqlOptions.MigrationsAssembly("Infrastructure");
+                    sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                 });
+            });
             return services;
         }
 
-        public static IServiceCollection
-        AddAuthentication(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var appSettingsSection = configuration.GetSection("AppSettings");
-            services.Configure<AppSettings> (appSettingsSection);
+            services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services
                 .AddAuthentication(x =>
                 {
-                    x.DefaultAuthenticateScheme =
-                        JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme =
-                        JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;
                     x.SaveToken = true;
                     x.TokenValidationParameters =
-                        new TokenValidationParameters {
+                        new TokenValidationParameters
+                        {
                             ValidateIssuerSigningKey = true,
                             IssuerSigningKey = new SymmetricSecurityKey(key),
                             ValidateIssuer = false,
@@ -309,103 +229,60 @@ namespace OSPeConTI.Auth.Services.Application
             return services;
         }
 
-        public static IServiceCollection
-        AddEventBus(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddTransient<MaterialCreadoIntegrationEventHandler>();
+
             services.AddTransient<MaterialModificadoIntegrationEventHandler>();
-            services
-                .AddTransient
-                <IMaterialIntegrationEventService,
-                    MaterialIntegrationEventService
-                >();
+            services.AddTransient<IMaterialIntegrationEventService, MaterialIntegrationEventService>();
 
-            services
-                .AddTransient
-                <Func<DbConnection, IIntegrationEventLogService>>(sp =>
-                    (DbConnection c) => new IntegrationEventLogService(c));
+            services.AddTransient<Func<DbConnection, IIntegrationEventLogService>>(sp => (DbConnection c) => new IntegrationEventLogService(c));
+            services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
 
-            services
-                .AddSingleton<IRabbitMQPersistentConnection>(sp =>
+                var factory = new ConnectionFactory()
                 {
-                    var logger =
-                        sp
-                            .GetRequiredService
-                            <ILogger<DefaultRabbitMQPersistentConnection>>();
+                    HostName = configuration["EventBusConnection"],
+                    DispatchConsumersAsync = true
+                };
 
-                    var factory =
-                        new ConnectionFactory()
-                        {
-                            HostName = configuration["EventBusConnection"],
-                            DispatchConsumersAsync = true
-                        };
-
-                    if (!string.IsNullOrEmpty(configuration["EventBusUserName"])
-                    )
-                    {
-                        factory.UserName = configuration["EventBusUserName"];
-                    }
-
-                    if (!string.IsNullOrEmpty(configuration["EventBusPassword"])
-                    )
-                    {
-                        factory.Password = configuration["EventBusPassword"];
-                    }
-
-                    var retryCount = 5;
-                    if (
-                        !string
-                            .IsNullOrEmpty(configuration["EventBusRetryCount"])
-                    )
-                    {
-                        retryCount =
-                            int.Parse(configuration["EventBusRetryCount"]);
-                    }
-
-                    return new DefaultRabbitMQPersistentConnection(factory,
-                        logger,
-                        retryCount);
-                });
-            services
-                .AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
+                if (!string.IsNullOrEmpty(configuration["EventBusUserName"]))
                 {
-                    var subscriptionClientName =
-                        configuration["SubscriptionClientName"];
-                    var rabbitMQPersistentConnection =
-                        sp.GetRequiredService<IRabbitMQPersistentConnection>();
-                    ILifetimeScope iLifetimeScope =
-                        sp.GetRequiredService<ILifetimeScope>();
-                    var logger =
-                        sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
-                    var eventBusSubcriptionsManager =
-                        sp.GetRequiredService<IEventBusSubscriptionsManager>();
+                    factory.UserName = configuration["EventBusUserName"];
+                }
 
-                    var retryCount = 5;
-                    if (
-                        !string
-                            .IsNullOrEmpty(configuration["EventBusRetryCount"])
-                    )
-                    {
-                        retryCount =
-                            int.Parse(configuration["EventBusRetryCount"]);
-                    }
+                if (!string.IsNullOrEmpty(configuration["EventBusPassword"]))
+                {
+                    factory.Password = configuration["EventBusPassword"];
+                }
 
-                    return new EventBusRabbitMQ(rabbitMQPersistentConnection,
-                        logger,
-                        iLifetimeScope,
-                        eventBusSubcriptionsManager,
-                        subscriptionClientName,
-                        retryCount);
-                });
+                var retryCount = 5;
+                if (!string.IsNullOrEmpty(configuration["EventBusRetryCount"]))
+                {
+                    retryCount = int.Parse(configuration["EventBusRetryCount"]);
+                }
 
-            services
-                .AddSingleton
-                <IEventBusSubscriptionsManager,
-                    InMemoryEventBusSubscriptionsManager
-                >();
+                return new DefaultRabbitMQPersistentConnection(factory, logger, retryCount);
+            });
+
+            services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
+            {
+                var subscriptionClientName = configuration["SubscriptionClientName"];
+                var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
+                ILifetimeScope iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
+                var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
+                var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
+
+                var retryCount = 5;
+                if (!string.IsNullOrEmpty(configuration["EventBusRetryCount"]))
+                {
+                    retryCount = int.Parse(configuration["EventBusRetryCount"]);
+                }
+
+                return new EventBusRabbitMQ(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
+            });
+
+            services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
 
             return services;
         }

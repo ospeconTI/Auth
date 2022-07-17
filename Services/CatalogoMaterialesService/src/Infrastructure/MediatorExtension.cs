@@ -9,7 +9,7 @@ namespace OSPeConTI.Auth.Services.Infrastructure
 {
     static class MediatorExtension
     {
-        public static async Task DispatchDomainEventsAsync(this IMediator mediator, CatalogoMaterialesContext ctx)
+        public static async Task DispatchDomainEventsAsync(this IMediator mediator, AuthContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
                 .Entries<Entity>()
