@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Services/CatalogoMaterialesService/src/Application/bin/Debug/net6.0/Application.dll",
+            "program": "${workspaceFolder}/Services/AuthService/src/Application/bin/Debug/net6.0/Application.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Services/CatalogoMaterialesService/src/Application",
+            "cwd": "${workspaceFolder}/Services/AuthService/src/Application",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
