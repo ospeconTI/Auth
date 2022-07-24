@@ -7,6 +7,7 @@ using System;
 using OSPeConTI.Auth.BuildingBlocks.EventBus.Abstractions;
 using OSPeConTI.Auth.Services.Application.IntegrationEvents;
 using OSPeConTI.Auth.Services.Domain;
+using OSPeConTI.Auth.Services.Application.Exceptions;
 
 namespace OSPeConTI.Auth.Services.Application.Commands
 {
@@ -29,7 +30,7 @@ namespace OSPeConTI.Auth.Services.Application.Commands
 
             UsuarioProfile user = await _usuarioProfileRepository.getByNombreUsuarioAsync(command.NombreUsuario);
 
-            if (user == null) throw new InvalidCastException();
+            if (user == null) throw new NotFoundException();
 
             user.ActivateUser(command.CodigoRecupero);
 

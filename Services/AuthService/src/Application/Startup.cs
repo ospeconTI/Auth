@@ -159,15 +159,15 @@ namespace OSPeConTI.Auth.Services.Application
 
         public static IServiceCollection AddEncryptMethods(this IServiceCollection services, IConfiguration configuration)
         {
-            /*  services.AddTransient<IEncrypt, Pbkdf2>();
-             services.AddTransient<IEncrypt, NoEncrypt>(); */
+            services.AddTransient<IEncrypt, Pbkdf2>();
+            services.AddTransient<IEncrypt, NoEncrypt>();
 
             return services;
         }
         public static IServiceCollection AddQueries(this IServiceCollection services, IConfiguration configuration)
         {
             //services.AddScoped<IAuthQueries>(conns => new AuthQueries(configuration.GetConnectionString("DefaultConnection"), configuration.GetSection("AppSettings").Get<AppSettings>().Secret, new Pbkdf2()));
-            services.AddScoped<IAuthQueries, AuthQueries>(conns => new AuthQueries(configuration, new Pbkdf2()));
+            services.AddScoped<IAuthQueries, AuthQueries>();
             return services;
         }
 
@@ -206,6 +206,7 @@ namespace OSPeConTI.Auth.Services.Application
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var issuer = appSettings.Issuer;
             services
                 .AddAuthentication(x =>
                 {
@@ -221,8 +222,10 @@ namespace OSPeConTI.Auth.Services.Application
                         {
                             ValidateIssuerSigningKey = true,
                             IssuerSigningKey = new SymmetricSecurityKey(key),
-                            ValidateIssuer = false,
+                            ValidateIssuer = true,
+                            ValidIssuer = issuer,
                             ValidateAudience = false
+
                         };
                 });
             return services;

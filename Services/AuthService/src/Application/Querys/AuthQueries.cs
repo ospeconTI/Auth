@@ -18,12 +18,12 @@ namespace OSPeConTI.Auth.Services.Application.Queries
     public class AuthQueries
         : IAuthQueries
     {
+        private readonly Pbkdf2 _encrypt;
         private string _connectionString = string.Empty;
         string _secret;
         dynamic _result;
 
-        IEncrypt _encrypt;
-        public AuthQueries(IConfiguration config, IEncrypt encrypt)
+        public AuthQueries(IConfiguration config, Pbkdf2 encrypt)
         {
             _connectionString = config.GetConnectionString("DefaultConnection");
 
@@ -57,12 +57,12 @@ namespace OSPeConTI.Auth.Services.Application.Queries
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secret);
-            var claimId = new Claim(ClaimTypes.NameIdentifier, _result.Id.ToString(), ClaimValueTypes.String, "SQL");
-            var claimUsuario = new Claim(ClaimTypes.Name, nombreUsuario, ClaimValueTypes.String, "SQL");
-            var claimApellido = new Claim(ClaimTypes.Surname, _result.Apellido.ToString(), ClaimValueTypes.String, "SQL");
-            var claimNombre = new Claim(ClaimTypes.GivenName, _result.Nombre.ToString(), ClaimValueTypes.String, "SQL");
-            var claimEmail = new Claim(ClaimTypes.Email, _result.Email != null ? _result.Email.ToString() : "", ClaimValueTypes.String, "SQL");
-            var claimImagen = new Claim(ClaimTypes.Uri, _result.Imagen != null ? _result.Imagen.ToString() : "", ClaimValueTypes.String, "SQL");
+            var claimId = new Claim(ClaimTypes.NameIdentifier, _result.Id.ToString(), ClaimValueTypes.String);
+            var claimUsuario = new Claim(ClaimTypes.Name, nombreUsuario, ClaimValueTypes.String);
+            var claimApellido = new Claim(ClaimTypes.Surname, _result.Apellido.ToString(), ClaimValueTypes.String);
+            var claimNombre = new Claim(ClaimTypes.GivenName, _result.Nombre.ToString(), ClaimValueTypes.String);
+            var claimEmail = new Claim(ClaimTypes.Email, _result.Email != null ? _result.Email.ToString() : "", ClaimValueTypes.String);
+            var claimImagen = new Claim(ClaimTypes.Uri, _result.Imagen != null ? _result.Imagen.ToString() : "", ClaimValueTypes.String);
 
 
             var tokenDescriptor = new SecurityTokenDescriptor

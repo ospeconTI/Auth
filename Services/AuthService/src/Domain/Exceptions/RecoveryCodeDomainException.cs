@@ -5,16 +5,16 @@ namespace OSPeConTI.Auth.Services.Domain.Exceptions
     /// <summary>
     /// Exception type for domain exceptions
     /// </summary>
-    public class MaterialesDomainException : Exception
+    public class RecoveryCodeDomainException : Exception
     {
-        public MaterialesDomainException()
+        public RecoveryCodeDomainException()
         { }
 
-        public MaterialesDomainException(string message)
+        public RecoveryCodeDomainException(string message)
             : base(message)
         { }
 
-        public MaterialesDomainException(string message, Exception innerException)
+        public RecoveryCodeDomainException(string message, Exception innerException)
             : base(message, innerException)
         { }
     }

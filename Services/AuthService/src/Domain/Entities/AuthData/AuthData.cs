@@ -1,4 +1,5 @@
 using System;
+using OSPeConTI.Auth.Services.Domain.Exceptions;
 using OSPeConTI.Auth.Services.Domain.SeedWork;
 
 namespace OSPeConTI.Auth.Services.Domain.Entities
@@ -21,33 +22,36 @@ namespace OSPeConTI.Auth.Services.Domain.Entities
         {
         }
 
-        public AuthData(Origen origen, Guid usuarioProfileId, string password, IEncrypt auth) : this()
+        public AuthData(Origen origen, Guid usuarioProfileId, string password, IEncrypt encript) : this()
         {
             UsuarioProfileId = usuarioProfileId;
-            HashSalt hashSalt = auth.EncryptPassword(password);
+            HashSalt hashSalt = encript.EncryptPassword(password);
             Password = hashSalt.Hash;
             Salt = Convert.ToBase64String(hashSalt.Salt);
             Origen = origen.Nombre;
-            recuperar();
+            RecoverPassword();
         }
 
-        public bool verificarPassword(string enteredPassword, IEncrypt auth)
+        public bool VerifyPassword(string enteredPassword, IEncrypt encript)
         {
-            return auth.VerifyPassword(enteredPassword, this.Salt, this.Password);
+            return encript.VerifyPassword(enteredPassword, this.Salt, this.Password);
         }
 
-        public void recuperar()
+        public void RecoverPassword()
         {
             CodigoRecupero = Guid.NewGuid().ToString().Split('-')[0].ToUpper();
             Vigencia = DateTime.Now.AddMinutes(15);
         }
 
-        public bool verificarRecupero(string codigo)
+        public void VerifyRecoveryCode(string codigo)
         {
-            return this.CodigoRecupero == codigo.Trim().ToUpper();
+
+            if (this.CodigoRecupero == codigo.Trim().ToUpper() && this.Vigencia > DateTime.Now) throw new RecoveryCodeDomainException("codigo recuperacion erroneo o vencido ");
+
+
         }
 
-        public void limpiarRecupero()
+        public void CleanRecoveryCode()
         {
             CodigoRecupero = "";
             Vigencia = null;

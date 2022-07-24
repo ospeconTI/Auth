@@ -35,7 +35,7 @@ namespace OSPeConTI.Auth.Services.Domain.Entities
 
         public void ActivateUser(string codigoRecupero)
         {
-            if (codigoRecupero != AuthData.CodigoRecupero) throw new Exception("El codigo de recupero no es válido");
+            this.AuthData.VerifyRecoveryCode(codigoRecupero);
             Activo = true;
             AuthData.Activo = true;
             AuthData.CodigoRecupero = "";
